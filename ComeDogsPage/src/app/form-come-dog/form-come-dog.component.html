@@ -1,0 +1,86 @@
+<nav class="navbar justify-content-between fixed-top navbar-dark bg-primary" *ngIf="logeado">
+  <a class="navbar-brand">Comedogs</a>
+  <form class="form-inline">
+    <button class="btn my-2 my-sm-0" (click)="cerrarSesion()">Cerrar Sesión</button>
+  </form>
+</nav>
+<!--el html para el login e ingresar a los comedogs-->
+<div class="row mt-5" *ngIf="!logeado">
+  <div class="col-12">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-xl-12">
+        <h1 class="h1 text-center text-justify text-dark">Inicio de Sesión</h1>
+      </div>
+    </div>
+    <div class="row justify-content-center m-5">
+      <div class="col-8">
+        <div class="form-group row">
+          <label for="staticEmail" class="col-sm-3 col-form-label">Correo Electrónico:</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" id="staticEmail" [(ngModel)]="user.correo">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="inputPassword" class="col-sm-3 col-form-label">Contraseña:</label>
+          <div class="col-sm-9">
+            <input type="password" class="form-control" id="inputPassword" [(ngModel)]="user.password">
+          </div>
+        </div>
+        <button class="btn btn-primary" (click)="loginUser(user)">Iniciar Sesión</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--el html para el form y el despliegue de toda la informacion de los comedogs-->
+<!-- form de la creacion de un comedog -->
+<div class="row m-4 justify-content-center mt-5" *ngIf="logeado">
+  <div class="col-12 col-sm-12 col-md-6 col-xl-6 mt-4">
+    <div class="form-group">
+      <label for="nameComedog">Nombre del ComeDog</label>
+      <input [(ngModel)]="comedog.nombre" name="nombre" type="text" class="form-control" id="nameComedog" aria-describedby="nameComedogHelp" placeholder="Ingrese nombre de ComeDog">
+      <small id="nameComedogHelp" class="form-text text-muted">Ingrese un nombre descriptivo por favor.</small>
+    </div>
+    <div class="form-group">
+      <label>Sector del ComeDog</label>
+      <input [(ngModel)]="comedog.sector" #search placeholder="Ingrese un sector para el ComeDog" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" [formControl]="searchControl">
+      <small class="form-text text-muted">Escriba un sector para el ComeDog.</small>
+    </div>
+    <button class="btn btn-primary" (click)="ingresarDatos(comedog)">Ingresar</button>
+  </div>
+  <div class="col-12 col-sm-12 col-md-6 col-xl-6 mt-4">
+    <div class="form-group">
+      <label>Ubicación del ComeDog</label>
+      <!-- mapa de los comedog -->
+      <agm-map [latitude]="lat" [longitude]="lng" style="height: 300px" [zoom]="zoom" (mapClick)="mapClicked($event)">
+        <!-- marker del mapa de los comedog -->
+        <agm-marker [latitude]="lat" [longitude]="lng" [markerDraggable]="draggable" (dragEnd)="markerDragEnd(m, $event)"></agm-marker>
+      </agm-map>
+      <small class="form-text text-muted">Ubique correctamente el ComeDog en el mapa.</small>
+    </div>
+  </div>
+</div>
+
+<div class="row" *ngIf="logeado">
+  <div class="col-12 col-sm-12 col-md-12 col-xl-12">
+    <h1 class="h1 text-left text-justify text-dark">Lista de ComeDogs</h1>
+  </div>
+</div>
+<!-- lista de comedog-->
+<div class="row" *ngIf="logeado">
+  <div class="col-auto col-sm-auto col-xl-auto col-md-auto col-lg-auto m-2" *ngFor=" let comedog of comedogs ">
+    <div class="card" style="width: 18rem;">
+      <span class="close text-right font-weight-bold" (click)="deleteComedog(comedog)" aria-hidden="true">&times;</span>
+      <agm-map [latitude]="comedog.latitud" [longitude]="comedog.longitud" style="height: 300px" [zoom]="15">
+        <agm-marker [latitude]="comedog.latitud" [longitude]="comedog.longitud" [markerDraggable]="false"></agm-marker>
+      </agm-map>
+      <div class="card-body">
+        <h4 class="card-title h6 text-capitalize font-weight-bold">{{comedog.nombre}}</h4>
+        <p class="card-text">{{comedog.sector}}</p>
+        <a href="#" class="btn btn-primary">Like</a>
+      </div>
+    </div>
+  </div>
+</div>
+
