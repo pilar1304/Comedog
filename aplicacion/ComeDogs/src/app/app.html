@@ -1,0 +1,15 @@
+<ion-menu [content]="mycontent">
+    <ion-header>
+    <ion-toolbar color="primary">
+        <ion-title>Bienvenido {{nombreUser}}</ion-title>
+    </ion-toolbar>
+    </ion-header>
+    <ion-content>
+    <ion-list>
+        <button ion-item color="primary" (tap)="cerrarSesion()">
+        Cerrar Sesion
+        </button>
+    </ion-list>
+    </ion-content>
+</ion-menu>
+<ion-nav #mycontent [root]="rootPage"></ion-nav>

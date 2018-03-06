@@ -1,0 +1,85 @@
+<!--
+  Generated template for the HomePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Home Page Original</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img style="align-items: center;" src="assets/imgs/logocomedog.png" />
+  <div padding>
+      <ion-segment [(ngModel)]="pet"  >
+        <ion-segment-button value="kittens" style="background-color: rgb(221, 229, 143);">
+          Quienes somos
+        </ion-segment-button>
+        <ion-segment-button value="puppies" style="background-color: rgb(230, 187, 94);">
+          ComeDog App
+        </ion-segment-button>
+      </ion-segment>
+    </div>
+    
+    <div [ngSwitch]="pet">
+      <ion-list *ngSwitchCase="'puppies'">
+        <ion-item>
+            <ion-card>
+                <ion-card-header>
+                    <h1 style="text-align: center;">ComeDog App <ion-icon name="phone-portrait"></ion-icon></h1>
+                </ion-card-header>
+              
+                <ion-card-content>
+                    <p  class="center">Nuestra idea se basa tras la construcción <br/>de una máquina que recicla botellas y<br/>contiene un 
+                      abastecimiento de comida<br/>para perros y gatos callejeros; El sistema<br/> consiste que a cambio de una botella de <br/>plástico se puede
+                        alimentar a varios<br/>perros y gatos.
+                      </p> <!-- <br/>Tu participación es importante!!!...<br/>Ellos te lo agradeceran.<br/-->
+                </ion-card-content>
+            </ion-card>
+            <ion-card>              
+                <ion-card-content>
+                    <p  class="center">Nuestra aplicación, a través de la <br/>geolocalización, permitirá ubicar estos<br/> puntos "ComeDog",donde se
+                      encuentran <br/>las máquinas ubicadas dentro de la <br/>ciudad de Quito  más cercanos a tú <br/>ubicación, asi no tendrás la necesidad de<br/>movilizarte
+                      largas distancias para dejar<br/>tu donación de botellas plásticas.
+                      </p>
+                       
+                </ion-card-content>
+            </ion-card>
+            <ion-card>              
+                <ion-card-content>
+                    <h2  class="center" style="color:rgb(231, 123, 52);">Tu participación es importante!!!...<br/>Ellos te lo agradeceran.
+                    </h2>
+                </ion-card-content>
+            </ion-card>
+
+        </ion-item>
+      </ion-list>
+    
+      <ion-list *ngSwitchCase="'kittens'">
+        <ion-item>
+         <ion-card>
+
+            <ion-card-header>
+                <h1 style="text-align: center;">ComeDog <ion-icon name="people"></ion-icon></h1>
+            </ion-card-header>
+          
+            <ion-card-content>
+                <p  class="center">Somos un grupo de voluntarios unidos <br/>por nuestra pasión de ayudar, nuestro<br/>objetivo es 
+                  fomentar el reciclaje en la <br/>sociedad y ayudar a los animales <br/>callejeros; Con nuestra
+                    aplicación <br/>pretendemos llegar a varios corazones,<br/>y promulgar la ayuda a quienes más lo <br/>necesitan.
+                  </p>
+                  
+            </ion-card-content>
+          
+          </ion-card>
+        </ion-item>
+      </ion-list>
+    </div>
+
+
+</ion-content>

@@ -1,0 +1,15 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons start>
+            <button ion-button icon-only color="royal" (tap)="openMenu()">
+            <ion-icon name="menu"></ion-icon>
+            </button>
+        </ion-buttons>
+        <ion-title >Bienvenido a Comedog</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-tabs>
+    <ion-tab [root]="homeRoot" tabTitle="Inicio" tabIcon="home"></ion-tab>
+    <ion-tab [root]="searchRoot" tabTitle="Buscar" tabIcon="pin"></ion-tab>
+</ion-tabs>

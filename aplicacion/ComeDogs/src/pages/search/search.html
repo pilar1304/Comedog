@@ -1,0 +1,78 @@
+<!--
+  Generated template for the SearchPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Search</ion-title>
+  </ion-navbar>
+
+  <ion-toolbar color="primary">
+      <button ion-button icon-right clear full color="light" (tap)="activarBusqueda()" *ngIf="enBusqueda">
+          Buscar
+          <ion-icon name="search"></ion-icon>
+        </button>
+        <button ion-button icon-right clear full color="light" (tap)="activarBusqueda()" *ngIf="!enBusqueda">
+            Parar Busqueda
+            <ion-spinner name="bubbles"></ion-spinner>
+          </button>
+    </ion-toolbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+    <ion-card *ngFor="let comedog of comedogsRespaldo">
+    
+      <ion-item> 
+        <ion-avatar item-start>
+            <ion-icon name="paw" style="color:#B24B0D; font-size: 2.2em;"></ion-icon>
+        </ion-avatar>
+        <h2>{{comedog.nombre}}</h2>
+        <p>Botellas almacenadas {{comedog.cantBotellas}}</p>
+      </ion-item>
+      <agm-map [mapDraggable]="drag" [zoom]="14" [latitude]="comedog.latitud" [longitude]="comedog.longitud" style="height: 300px;">
+          <agm-marker [iconUrl]="'assets/icon/mark.png'" [latitude]="comedog.latitud" [longitude]="comedog.longitud" [draggable]="drag"></agm-marker>
+      </agm-map>
+      <ion-card-content>
+        
+        <ion-row>
+          <ion-col> 
+              <p>Sector: </p> 
+              <p>{{comedog.sector}}</p>
+          </ion-col>
+          <ion-col>
+              <p>Cantidad de Comida: </p> 
+              <p>{{comedog.cantComida}} lb</p>
+          </ion-col>
+        </ion-row>
+      </ion-card-content>
+    
+      <ion-row>
+        <ion-col>
+          <button ion-button icon-left clear small (tap)="putLikes(comedog)">
+            <ion-icon name="thumbs-up"></ion-icon>
+            <div>{{comedog.likes}} Likes</div>
+          </button>
+        </ion-col>
+        <ion-col>
+          <button ion-button icon-left clear small (tap)="getComentariosComedog(comedog)">
+            <ion-icon name="text"></ion-icon>
+            <div>Comentarios</div>
+          </button>
+        </ion-col>
+        <ion-col>
+            <button ion-button icon-left clear small (tap)="getBotellasComedog(comedog)">
+              <ion-icon name="trash"></ion-icon>
+              <div>Poner botellas</div>
+            </button>
+          </ion-col>
+      </ion-row>
+
+    </ion-card>
+
+</ion-content>
